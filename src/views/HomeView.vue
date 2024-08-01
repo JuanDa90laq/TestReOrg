@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
 import DynamicTable from '@/components/DynamicTable.vue'
 import SearchInput from '@/components/SearchInput.vue'
+
+import { ref } from 'vue'
 
 const searchTerm = ref('')
 const rowsSelect = ref([])
@@ -53,7 +53,7 @@ const changeSelection = (data: any) => {
 
 <template>
   <main class="h-full w-full flex flex-col">
-    <h1 class="font-bold text-6xl p-6 text-white w-full text-center bg-title">Case Study JD</h1>
+    <h1 class="font-bold text-6xl p-6 text-white w-full text-center bg-title">Case Study JDC</h1>
     <div class="mx-auto pt-10">
       <SearchInput v-model:searchTerm="searchTerm" class="mb-5" />
       <DynamicTable
@@ -64,7 +64,7 @@ const changeSelection = (data: any) => {
       />
       <section v-if="rowsSelect.length === 1">
         <h3>details</h3>
-        <div>
+        <!-- <div>
           <div><span>Id</span> {{ rowsSelect[0]?.id }}</div>
           <div><span>Issuer</span> {{ rowsSelect[0]?.issuer_name }}</div>
           <div><span>Deal</span> {{ rowsSelect[0]?.deal_name }}</div>
@@ -75,7 +75,7 @@ const changeSelection = (data: any) => {
           <div><span>Analysts</span> {{ rowsSelect[0].analysts.join(', ') }}</div>
           <div><span>Docs</span> {{ rowsSelect[0].doc_count }}</div>
           <div><span>Identifiers</span> {{ rowsSelect[0].custom_deal_identifiers.join(', ') }}</div>
-        </div>
+        </div> -->
       </section>
     </div>
   </main>

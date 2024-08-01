@@ -38,7 +38,7 @@ const props = defineProps({
   columns: Array,
   data: {
     type: Array,
-    default: []
+    default: () => []
   },
   searchTerm: {
     type: String,
