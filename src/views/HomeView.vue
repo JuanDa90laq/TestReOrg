@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import DynamicTable from '@/components/DynamicTable.vue'
 import SearchInput from '@/components/SearchInput.vue'
+import DetailsData from '@/components/DetailsData.vue'
 
 import { ref } from 'vue'
 
@@ -56,27 +57,16 @@ const changeSelection = (data: any) => {
     <h1 class="font-bold text-6xl p-6 text-white w-full text-center bg-title">Case Study JDC</h1>
     <div class="p-10">
       <SearchInput v-model:searchTerm="searchTerm" class="mb-5" />
-      <DynamicTable
-        :columns="columns"
-        :data="jsonData"
-        :searchTerm="searchTerm"
-        @changeSelection="changeSelection"
-      />
-      <section v-if="rowsSelect.length === 1">
-        <h3>details</h3>
-        <!-- <div>
-          <div><span>Id</span> {{ rowsSelect[0]?.id }}</div>
-          <div><span>Issuer</span> {{ rowsSelect[0]?.issuer_name }}</div>
-          <div><span>Deal</span> {{ rowsSelect[0]?.deal_name }}</div>
-          <div><span>Bloomberg ID</span> {{ rowsSelect[0].bloomber_id }}</div>
-          <div><span>Total</span> {{ rowsSelect[0].total }}</div>
-          <div><span>Industry</span> {{ rowsSelect[0].industry }}</div>
-          <div><span>Status</span> {{ rowsSelect[0].status }}</div>
-          <div><span>Analysts</span> {{ rowsSelect[0].analysts.join(', ') }}</div>
-          <div><span>Docs</span> {{ rowsSelect[0].doc_count }}</div>
-          <div><span>Identifiers</span> {{ rowsSelect[0].custom_deal_identifiers.join(', ') }}</div>
-        </div> -->
-      </section>
+      <div>
+        <DynamicTable
+          :columns="columns"
+          :data="jsonData"
+          :searchTerm="searchTerm"
+          @changeSelection="changeSelection"
+        />
+
+        <DetailsData />
+      </div>
     </div>
   </main>
 </template>

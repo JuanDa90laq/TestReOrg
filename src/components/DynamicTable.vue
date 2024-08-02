@@ -1,52 +1,60 @@
 <template>
   <div>
-    <div class="overflow-x-auto rounded-lg">
-      <table class="text-sm text-gray-500 table-fixed w-auto lg:w-full">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-          <tr>
-            <th class="py-3 px-6"></th>
-            <th
-              v-for="column in columns"
-              :key="column.key"
-              @click="sortData(column.key)"
-              class="py-3 px-6"
-            >
-              <div class="flex gap-4 justify-between items-center">
-                {{ column.label }}
+    <div v-if="sortedData.length">
+      <div class="overflow-x-auto rounded-lg">
+        <table class="text-sm text-gray-500 table-fixed w-auto lg:w-full">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+              <th class="py-3 px-6"></th>
+              <th
+                v-for="column in columns"
+                :key="column.key"
+                @click="sortData(column.key)"
+                class="py-3 px-6"
+              >
+                <div class="flex gap-4 justify-between items-center">
+                  {{ column.label }}
                   <span v-if="sortKey === column.key" class="text-lg font-bold">
-                  {{ sortOrder === 'asc' ? '↑' : '↓' }}
-                </span>
-              </div>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="item in sortedData"
-            :key="item.id"
-            class="bg-white border-b hover:bg-emerald-100 text-center"
-          >
-            <td class="py-4 px-6">
-              <input type="checkbox" :value="item" v-model="selectedRows" />
-            </td>
-            <td v-for="column in columns" :key="column.key" class="py-4 px-6">
-              {{ formatValue(item[column.key], column.type) }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                    {{ sortOrder === 'asc' ? '↑' : '↓' }}
+                  </span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              v-for="item in sortedData"
+              :key="item.id"
+              class="bg-white border-b hover:bg-emerald-100 text-center"
+            >
+              <td class="py-4 px-6">
+                <input type="checkbox" :value="item" v-model="selectedRows" />
+              </td>
+              <td v-for="column in columns" :key="column.key" class="py-4 px-6">
+                {{ formatValue(item[column.key], column.type) }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button
+        @click="exportCSV"
+        class="mt-10 flex px-3 py-2 bg-title mr-1 text-white font-semibold rounded"
+      >
+        Export to CSV
+      </button>
     </div>
-    <button
-      @click="exportCSV"
-      class="mt-10 flex px-3 py-2 bg-yellow-400 mr-1 text-white font-semibold rounded"
-    >
-      Export to CSV
-    </button>
+    <div v-else class="flex justify-center items-center font-extrabold text-3xl p-10">
+      Sorry we dont have data :/
+    </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps, computed, ref, watch, defineEmits } from 'vue'
+import { defineProps, computed, ref, watch } from 'vue'
+import { useDataStore } from '@/stores/data'
+
+const store = useDataStore()
 
 const sortKey = ref('')
 const sortOrder = ref('asc')
@@ -64,8 +72,6 @@ const props = defineProps({
     required: false
   }
 })
-
-const emit = defineEmits(['changeSelection'])
 
 const filterdData = computed(() => {
   if (props.searchTerm === ' ') return props.data
@@ -92,7 +98,7 @@ const sortedData = computed(() => {
 })
 
 watch(selectedRows, (newSelected) => {
-  emit('changeSelection', newSelected)
+  store.setDetails(newSelected)
 })
 
 const formatValue = (value, type) => {
