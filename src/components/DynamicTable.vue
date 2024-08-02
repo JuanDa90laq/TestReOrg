@@ -1,29 +1,45 @@
 <template>
   <div>
-    <table>
-      <thead>
-        <tr>
-          <th>Select Rows</th>
-          <th v-for="column in columns" :key="column.key" @click="sortData(column.key)">
-            {{ column.label }}
-            <span v-if="sortKey === column.key">
-              {{ sortOrder === 'asc' ? '↑' : '↓' }}
-            </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in sortedData" :key="item.id">
-          <td>
-            <input type="checkbox" :value="item" v-model="selectedRows" />
-          </td>
-          <td v-for="column in columns" :key="column.key">
-            {{ formatValue(item[column.key], column.type) }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <button @click="exportCSV">Export to CSV</button>
+    <div class="overflow-x-auto">
+      <table class="text-sm text-gray-500 table-fixed w-auto lg:w-full">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th class="py-3 px-6"></th>
+            <th
+              v-for="column in columns"
+              :key="column.key"
+              @click="sortData(column.key)"
+              class="py-3 px-6"
+            >
+              {{ column.label }}
+              <span v-if="sortKey === column.key">
+                {{ sortOrder === 'asc' ? '↑' : '↓' }}
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            v-for="item in sortedData"
+            :key="item.id"
+            class="bg-white border-b hover:bg-emerald-100 text-center"
+          >
+            <td class="py-4 px-6">
+              <input type="checkbox" :value="item" v-model="selectedRows" />
+            </td>
+            <td v-for="column in columns" :key="column.key" class="py-4 px-6">
+              {{ formatValue(item[column.key], column.type) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button
+      @click="exportCSV"
+      class="mt-10 flex px-3 py-2 bg-yellow-400 mr-1 text-white font-semibold rounded"
+    >
+      Export to CSV
+    </button>
   </div>
 </template>
 

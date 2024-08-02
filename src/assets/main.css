@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 #app {
-  height: 100vh;
+  height: 100%;
   margin: 0 auto;
   font-weight: normal;
-  background-color: #f4f1ee;
 }

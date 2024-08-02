@@ -54,7 +54,7 @@ const changeSelection = (data: any) => {
 <template>
   <main class="h-full w-full flex flex-col">
     <h1 class="font-bold text-6xl p-6 text-white w-full text-center bg-title">Case Study JDC</h1>
-    <div class="mx-auto pt-10">
+    <div class="p-10">
       <SearchInput v-model:searchTerm="searchTerm" class="mb-5" />
       <DynamicTable
         :columns="columns"
