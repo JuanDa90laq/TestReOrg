@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto rounded-lg">
       <table class="text-sm text-gray-500 table-fixed w-auto lg:w-full">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
@@ -11,10 +11,12 @@
               @click="sortData(column.key)"
               class="py-3 px-6"
             >
-              {{ column.label }}
-              <span v-if="sortKey === column.key">
-                {{ sortOrder === 'asc' ? '↑' : '↓' }}
-              </span>
+              <div class="flex gap-4 justify-between items-center">
+                {{ column.label }}
+                  <span v-if="sortKey === column.key" class="text-lg font-bold">
+                  {{ sortOrder === 'asc' ? '↑' : '↓' }}
+                </span>
+              </div>
             </th>
           </tr>
         </thead>
