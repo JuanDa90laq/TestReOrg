@@ -23,27 +23,75 @@ const columns = ref([
 const jsonData = ref([
   {
     id: 1,
-    issuer_name: 'Company A',
-    deal_name: 'Deal A',
-    bloomber_id: 'BID123',
-    total: 1000.5,
-    industry: 'Finance',
+    issuer_name: 'Tesla',
+    deal_name: 'Batteries',
+    bloomber_id: '1',
+    total: 10.5,
+    industry: 'Car',
     status: 'Active',
-    analysts: ['Analyst 1', 'Analyst 2'],
-    doc_count: 10,
-    custom_deal_identifiers: ['ID1', 'ID2']
+    analysts: ['Test'],
+    doc_count: 101,
+    custom_deal_identifiers: ['1', '2']
   },
   {
     id: 2,
-    issuer_name: 'Company B',
-    deal_name: 'Deal B',
-    bloomber_id: 'BID456',
-    total: 2000.75,
+    issuer_name: 'Microsoft',
+    deal_name: 'Chips',
+    bloomber_id: '2',
+    total: 2230.75,
     industry: 'Tech',
     status: 'Closed',
-    analysts: ['Analyst 3'],
-    doc_count: 5,
-    custom_deal_identifiers: ['ID3', 'ID4']
+    analysts: ['test 2'],
+    doc_count: 50,
+    custom_deal_identifiers: ['2', '3']
+  },
+  {
+    id: 3,
+    issuer_name: 'Microsoft',
+    deal_name: 'Chips',
+    bloomber_id: '2',
+    total: 2230.75,
+    industry: 'Tech',
+    status: 'Closed',
+    analysts: ['test 2'],
+    doc_count: 50,
+    custom_deal_identifiers: ['2', '3']
+  },
+  {
+    id: 4,
+    issuer_name: 'Microsoft',
+    deal_name: 'Chips',
+    bloomber_id: '2',
+    total: 2230.75,
+    industry: 'Tech',
+    status: 'Closed',
+    analysts: ['test 2'],
+    doc_count: 50,
+    custom_deal_identifiers: ['2', '3']
+  },
+  {
+    id: 5,
+    issuer_name: 'Microsoft',
+    deal_name: 'Chips',
+    bloomber_id: '2',
+    total: 2230.75,
+    industry: 'Tech',
+    status: 'Closed',
+    analysts: ['test 2'],
+    doc_count: 50,
+    custom_deal_identifiers: ['2', '3']
+  },
+  {
+    id: 6,
+    issuer_name: 'Microsoft',
+    deal_name: 'Chips',
+    bloomber_id: '2',
+    total: 2230.75,
+    industry: 'Tech',
+    status: 'Closed',
+    analysts: ['test 2'],
+    doc_count: 50,
+    custom_deal_identifiers: ['2', '3']
   }
 ])
 
